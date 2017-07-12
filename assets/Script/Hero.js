@@ -12,9 +12,14 @@ cc.Class({
     },
     // use this for initialization
     onLoad: function () {
-        this.bullet.pushBullet(this.node,GROUP,1,0.2);
+        this.node.bulletArray=new Array();
     },
-    
+    start:function(){
+        
+        this.schedule(function() {
+            this.bullet.pushBullet(this.node,GROUP,1,0.2);
+        }, 0.1);
+    },
     
     
     

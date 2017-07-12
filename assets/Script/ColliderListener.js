@@ -1,6 +1,10 @@
 const BULLET="bullet";
 const HERO="hero";
+const ENEMY0="enemy0";
+const GROUP_HERO_BULLET="hero_bullet"
+
 var Hero=require("Hero");
+var Enemy=require("Enemy");
 var Bullet=require("Bullet");
 cc.Class({
     extends: cc.Component,
@@ -32,25 +36,64 @@ cc.Class({
         this.node.color = cc.Color.RED;
         
         var parent=this.node.parent;
+        var nodeName=this.node.name;
         
-        if(this.node.name==BULLET){
-            //var hero=parent.getChildByName(HERO);
-            //console.log(this.node)
-            this.node.getComponent(Bullet).destroyBullet(this.node);
+        switch(nodeName){
+            case BULLET:
+                this.node.getComponent(Bullet).destroyBullet(this.node);
+            break;
+            case ENEMY0:
+                //if(other.name==BULLET&&other.group==GROUP_HERO_BULLET){
+                    
+                    var blood=this.node.blood;
+                    this.node.blood--;
+                    cc.log(this.node.blood);
+                    if(this.node.blood==1){
+                        var anim = this.node.getComponent(cc.Animation);
+                        anim.on('finished',      this.destoryEnemy,        this);
+                        anim.speed = 2;
+                        anim.play("boom");
+                        //this.node.getComponent(Enemy).destroyEnemy(this.node);
+                    }
+                    // switch(this.node.blood){
+                        
+                    //     case 3:
+
+                        
+                    //     break;
+                    //     case 2:
+
+                        
+                    //     break;
+                    //     case 1:
+
+                        
+                    //     //console.log(this.node.getComponent(Enemy))
+                    //     var anim = this.node.getComponent(cc.Animation);
+                        
+                    //     anim.play();
+                    //     //this.node.getComponent(Enemy).destroyEnemy(this.node);
+                    //     break;
+                        
+                    // }
+                //}
+            break;
         }
         this.touchingNumber ++;
         
     },
-    
+    destoryEnemy:function(){
+        this.node.getComponent(Enemy).destroyEnemy(this.node);
+    },
     onCollisionStay: function (other) {
         // console.log('on collision stay');
     },
     
     onCollisionExit: function () {
         this.touchingNumber --;
-        if (this.touchingNumber === 0) {
+        
             this.node.color = cc.Color.WHITE;
-        }
+        
     }
 
     // called every frame, uncomment this function to activate update callback

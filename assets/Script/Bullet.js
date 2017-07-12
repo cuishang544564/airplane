@@ -10,6 +10,8 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        //this.node.masterNode=null;
+
         this.bulletChildList=new Array()
         this.bulletPool = new cc.NodePool();
         let initCount = 20;
@@ -37,7 +39,7 @@ cc.Class({
         }
         bulletChild.group=group;
         this.bulletChildList.push(bulletChild);
-        
+        bulletChild.masterNode=master;
         bulletChild.parent = parentNode; // 将生成的敌人加入节点树
         var positionMove;
         //console.log(master.parent)
@@ -47,39 +49,46 @@ cc.Class({
             positionMove=cc.p(0,-parentNode.getContentSize().height);
         }
         this.init(positionMove,bulletChild,master)
+        //cc.log(master.bulletArray)
+        master.bulletArray.push(bulletChild);
         //this.init(); //接下来就可以调用 enemy 身上的脚本进行初始化
     },
-    pushBullet:function(master,group,direction,second){
+    pushBullet:function(master,group,direction){
         
 
         if(master==null){
             console.log("node null")
         }
+        this.createBullet(master,group,direction);
         
-        this.schedule(function() {
-            // 这里的 this 指向 component
-            this.createBullet(master,group,direction);
-        }, second);
         //this.createBullet(parentNode);
     },
     init:function(positionMove,child,master){
         child.x=master.x;
         child.y=master.y;
-        var actionCallbackFunction = cc.callFunc(this.destroyBullet, this);
+        var actionCallbackFunction = cc.callFunc(this.destroyBullet, this,100);
 
         child.runAction(cc.sequence(
                  cc.moveBy(2, positionMove), 
                  actionCallbackFunction
              ));
-        //this.bulletPool.put(child);
-                        // bulletChildList.splice(0,1);
-                        // child.stopAllActions();
+        
                         
     },
-    destroyBullet : function(target){
+    destroyBullet : function(target,num){
+        //cc.log(num);
         this.bulletPool.put(target);
-        this.bulletChildList.splice(0,1);
-        target.stopAllActions();
+        var masterNode=target.masterNode;
+        if(masterNode!=null){
+            var childIndex=masterNode.bulletArray.indexOf(target);
+            
+             if(childIndex>-1){
+                 masterNode.bulletArray.splice(childIndex,1);
+             }
+            //cc.log(masterNode)
+        }
+        target.removeFromParent();
+        
     },
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {

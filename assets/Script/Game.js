@@ -2,7 +2,7 @@ var Hero=require("Hero");
 var Enemy=require("Enemy");
 cc.Class({
     extends: cc.Component,
-
+    
     properties: {
        hero:{
             default: null,
@@ -12,19 +12,17 @@ cc.Class({
             default:null,
             type:Enemy
         },
-        enemyPre: cc.Prefab,
-        enemyPre1: cc.Prefab,
-        enemyPre2: cc.Prefab,
+        
     },
 
     // use this for initialization
     onLoad: function () {
-
+        
         this.setEventManager();
 
         
         //this.hero.pushBullet(this.node);
-        this.enemy.init(100,this.enemyPre,this.node);
+        
         
     },
     start:function(){

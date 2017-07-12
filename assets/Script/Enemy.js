@@ -1,13 +1,15 @@
+var Config=require("Config")
+
 var Bullet=require("Bullet");
 var GROUP="monster";
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        bullet:{
-            default: null,
-            type: Bullet
-        } 
+        
+        enemyPre: cc.Prefab,
+        enemyPre1: cc.Prefab,
+        enemyPre2: cc.Prefab,
     },
 
     // use this for initialization
@@ -17,26 +19,33 @@ cc.Class({
         var p=xLength/5;
         var startPosXs=[-p,-p*2,0,p,p*2];
         this.startPosXs=startPosXs;
-        
+        this.init(100,this.enemyPre,this.node);
         this.flag=true;
         //cc.log(startPosXs)
     },
     init:function(num,pre,parent){
-        var enemyPool=new cc.NodePool();
-        this.enemyPool=enemyPool;
+        
+        this.enemyPool=new cc.NodePool();
         for(var i=0;i<num;i++){
-            let enemyPre = cc.instantiate(pre); // 创建节点
+            let enemy0 = cc.instantiate(pre); // 创建节点
+            
             //enemyPre.parent=parent;
             //this.initEnemyPre(enemyPre,parent);
-            enemyPool.put(enemyPre); // 通过 putInPool 接口放入对象池
+            this.enemyPool.put(enemy0); // 通过 putInPool 接口放入对象池
         }
-        return enemyPool;
+        //return this.enemyPool;
     },
     initEnemyPre:function(enemyChild,parentNode,positionX){
+
+        enemyChild.bulletArray=new Array();
+
         enemyChild.x=positionX;
         
         enemyChild.y=parentNode.getContentSize().height/2;
-        //this.bullet.pushBullet(enemyChild,GROUP,-1,0.8);
+        // this.schedule(function() {
+        //     this.bullet.pushBullet(enemyChild,GROUP,-1,0.8);
+        // }, 0.4);
+        
 
         var positionMove=cc.p(0,-parentNode.getContentSize().height);
         var actionCallbackFunction = cc.callFunc(this.destroyEnemy, this);
@@ -47,18 +56,24 @@ cc.Class({
         //cc.log(parentNode.getContentSize().y/2)
     },
     destroyEnemy : function(target){
-        
-        this.enemyPool.put(target);
+        //cc.log(this.enemyPool);
         target.stopAllActions();
+        this.enemyPool.put(target);
+        target.removeFromParent();
     },
+
     createEnemy: function (parentNode,positionX) {
         var enemyChild = null;
         if (this.enemyPool.size() > 0) { // 通过 size 接口判断对象池中是否有空闲的对象
             enemyChild = this.enemyPool.get();
         } else { // 如果没有空闲对象，也就是对象池中备用对象不够时，我们就用 cc.instantiate 重新创建
-            enemyChild = cc.instantiate(pre);
+            enemyChild = cc.instantiate(this.enemyPre);
         }
         enemyChild.group=GROUP;
+        //血量
+        enemyChild.blood=3;
+        //绑定爆炸动画
+        var anim = enemyChild.getComponent(cc.Animation);
         
         enemyChild.parent = parentNode; // 将生成的敌人加入节点树
         this.initEnemyPre(enemyChild,parentNode,positionX)
