@@ -1,6 +1,7 @@
 const BULLET="bullet";
 const HERO="hero";
 const ENEMY0="enemy0";
+const ENEMY1="enemy1";
 const GROUP_HERO_BULLET="hero_bullet"
 
 var Hero=require("Hero");
@@ -42,13 +43,14 @@ cc.Class({
             case BULLET:
                 this.node.getComponent(Bullet).destroyBullet(this.node);
             break;
-            case ENEMY0:
+            case ENEMY0: case ENEMY1:
                 //if(other.name==BULLET&&other.group==GROUP_HERO_BULLET){
                     
                     var blood=this.node.blood;
                     this.node.blood--;
                     cc.log(this.node.blood);
                     if(this.node.blood==1){
+                        this.node.stopActionByTag(1001);
                         var anim = this.node.getComponent(cc.Animation);
                         anim.on('finished',      this.destoryEnemy,        this);
                         anim.speed = 2;
