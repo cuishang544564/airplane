@@ -381,24 +381,6 @@
     "type": "e1"
   },
   {
-    "__type__": "cc.Animation",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "66c5d7d1-1b90-4724-8af1-a76cc68da73a"
-    },
-    "_clips": [
-      {
-        "__uuid__": "66c5d7d1-1b90-4724-8af1-a76cc68da73a"
-      }
-    ],
-    "playOnLoad": false
-  },
-  {
     "__type__": "1b1cb5iLttKhqb8TOcsJ2aK",
     "_name": "",
     "_objFlags": 0,
@@ -415,6 +397,24 @@
     "enemyPre2": {
       "__uuid__": "5567ae5c-4dfa-44cd-9f09-6549a4171b3e"
     }
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "d792586f-5c0b-45e7-9231-5cf843f2e9b5"
+    },
+    "_clips": [
+      {
+        "__uuid__": "d792586f-5c0b-45e7-9231-5cf843f2e9b5"
+      }
+    ],
+    "playOnLoad": false
   },
   {
     "__type__": "cc.PrefabInfo",

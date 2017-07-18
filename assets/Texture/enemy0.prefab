@@ -251,7 +251,9 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "66c5d7d1-1b90-4724-8af1-a76cc68da73a"
+    },
     "_clips": [
       {
         "__uuid__": "66c5d7d1-1b90-4724-8af1-a76cc68da73a"
@@ -267,7 +269,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "7e065gAJGdMvZF8K3tQhFd4",
+    "fileId": "647ebuOlJ9J1ImaNFN+tZ9Q",
     "sync": false
   }
 ]

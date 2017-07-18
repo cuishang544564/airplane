@@ -6,11 +6,15 @@ cc.Class({
     properties: {
        hero:{
             default: null,
-            type: Hero
+            type: cc.Node
+        },
+        score:{
+            default: null,
+            type: cc.Node,
         },
         enemy:{
             default:null,
-            type:Enemy
+            type:cc.Node
         },
         
     },
@@ -19,15 +23,15 @@ cc.Class({
     onLoad: function () {
         
         this.setEventManager();
-
-        
+        //this.score.removeFromParent();
+        this.score.string=1;
         //this.hero.pushBullet(this.node);
         
         
     },
     start:function(){
         cc.log("hello")
-        this.enemy.createEnemysToDestory(this.node,5)
+        this.enemy.getComponent(Enemy).createEnemysToDestory(this.node,5)
     },
     setEventManager:function(){
         this.node.on(cc.Node.EventType.TOUCH_MOVE, function (event) {
@@ -36,15 +40,16 @@ cc.Class({
             
             
             //this.hero.position();
-            this.hero.moveTo(this.node.convertToNodeSpaceAR(event.getLocation()))
+            this.hero.getComponent(Hero).moveTo(this.node.convertToNodeSpaceAR(event.getLocation()))
         //console.log(this.node.convertToNodeSpaceAR(event.getLocation()));
         //console.log("hero"+this.hero.node.position+"#"+this.hero.node.x+"#"+this.hero.node.y)
         }, this);
     },
     
     
+
     // called every frame
     update: function (dt) {
-
+        this.score.string=1;
     },
 });

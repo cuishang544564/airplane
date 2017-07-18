@@ -1,5 +1,6 @@
 const BULLET="bullet";
 const HERO="hero";
+
 const ENEMY0="enemy0";
 const ENEMY1="enemy1";
 const GROUP_HERO_BULLET="hero_bullet"
@@ -53,8 +54,13 @@ cc.Class({
                         this.node.stopActionByTag(1001);
                         var anim = this.node.getComponent(cc.Animation);
                         anim.on('finished',      this.destoryEnemy,        this);
-                        anim.speed = 2;
-                        anim.play("boom");
+                        anim.speed = 0.5;
+                        if(nodeName==ENEMY0){
+                            anim.play("boom");
+                        }else{
+                            anim.play("boom1");
+                        }
+                        
                         //this.node.getComponent(Enemy).destroyEnemy(this.node);
                     }
                     // switch(this.node.blood){

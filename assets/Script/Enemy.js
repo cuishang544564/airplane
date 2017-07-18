@@ -65,6 +65,14 @@ cc.Class({
     destroyEnemy : function(target){
         //cc.log(this.enemyPool);
         //target.stopActionByTag(1001);
+        var score= parseInt(target.parent.getChildByName("score").string) + target.blood;
+        var tt=target.parent.getChildByName("score");
+        //tt.removeFromParent();
+        tt.string="22";
+        //ttnew.string=score;
+        
+        //ttnew.parent=target.parent;
+        
         this.enemyPool.put(target);
         target.removeFromParent();
     },
@@ -80,7 +88,7 @@ cc.Class({
                 enemyPre=this.enemyPre;
             break;
             case 1:
-                blood=5
+                blood=10
                 enemyPre=this.enemyPre1;
                 enemys=this.enemyPool1;
             break;
@@ -120,10 +128,12 @@ cc.Class({
                 this.flag=true;
             }
             
-            this.createEnemy(0,parentNode,zf);
+            
             
             if(count%30==0){
                     this.createEnemy(1,parentNode,zf);
+                }else{
+                    this.createEnemy(0,parentNode,zf);
                 }
 
             count++;

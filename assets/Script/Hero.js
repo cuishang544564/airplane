@@ -7,7 +7,7 @@ cc.Class({
     properties: {
         bullet:{
             default: null,
-            type: Bullet
+            type: cc.Node
         }    
     },
     // use this for initialization
@@ -17,7 +17,7 @@ cc.Class({
     start:function(){
         
         this.schedule(function() {
-            this.bullet.pushBullet(this.node,GROUP,1,0.2);
+            this.bullet.getComponent(Bullet).pushBullet(this.node,GROUP,1,0.2);
         }, 0.1);
     },
     
