@@ -233,6 +233,7 @@
       "__id__": 1
     },
     "_enabled": true,
+    "score": null,
     "enemyPre": {
       "__uuid__": "b91532cc-8006-45f4-a3fb-c3f10f3d5f8a"
     },

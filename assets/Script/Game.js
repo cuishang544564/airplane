@@ -10,7 +10,7 @@ cc.Class({
         },
         score:{
             default: null,
-            type: cc.Node,
+            type: cc.Label,
         },
         enemy:{
             default:null,
@@ -18,13 +18,14 @@ cc.Class({
         },
         
     },
-
+    
     // use this for initialization
     onLoad: function () {
         
         this.setEventManager();
         //this.score.removeFromParent();
-        this.score.string=1;
+        this.score;
+        this.score.string=0;
         //this.hero.pushBullet(this.node);
         
         
@@ -50,6 +51,6 @@ cc.Class({
 
     // called every frame
     update: function (dt) {
-        this.score.string=1;
+        //this.gainScore();
     },
 });

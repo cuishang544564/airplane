@@ -65,10 +65,10 @@ cc.Class({
     destroyEnemy : function(target){
         //cc.log(this.enemyPool);
         //target.stopActionByTag(1001);
-        var score= parseInt(target.parent.getChildByName("score").string) + target.blood;
-        var tt=target.parent.getChildByName("score");
+        //var score= parseInt(target.parent.getChildByName("score").string) + target.blood;
+        var tt=target.parent.getChildByName("score").getComponent(cc.Label);
         //tt.removeFromParent();
-        tt.string="22";
+        tt.string=parseInt(tt.string)+target.totalBlood;
         //ttnew.string=score;
         
         //ttnew.parent=target.parent;
@@ -101,6 +101,7 @@ cc.Class({
         enemyChild.group=GROUP;
         //血量
         enemyChild.blood=blood;
+        enemyChild.totalBlood=blood;
         //绑定爆炸动画
         var anim = enemyChild.getComponent(cc.Animation);
         

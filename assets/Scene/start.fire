@@ -2621,7 +2621,7 @@
       }
     ],
     "_prefab": null,
-    "_id": "af479L+gCNGN6J59HFiyL3R",
+    "_id": "f4c223s8ptHyLMcAzgeJRlJ",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
@@ -2638,7 +2638,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60.8,
+      "width": 131.17,
       "height": 40
     },
     "_rotationX": 0,
@@ -2647,8 +2647,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 75,
-      "y": -172
+      "x": 120,
+      "y": -314
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -2673,7 +2673,7 @@
     "_N$file": null,
     "_isSystemFontUsed": true,
     "_spacingX": 0,
-    "_N$string": "111",
+    "_N$string": "score:0",
     "_N$horizontalAlign": 1,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
@@ -2707,7 +2707,7 @@
       "__id__": 30
     },
     "score": {
-      "__id__": 40
+      "__id__": 41
     },
     "enemy": {
       "__id__": 3
